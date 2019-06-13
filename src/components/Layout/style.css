@@ -1,0 +1,37 @@
+/*________________________________-Header-_____________________________*/
+
+header {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    border-bottom: solid #111;
+    display: block;
+}
+
+#logo {
+    margin: 0 auto;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+/*_____________________________________________________________*/
+
+footer {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: solid #111;
+    box-sizing: border-box;
+}
+
+footer > p {
+    color: #bbb;
+    text-align: center;
+}

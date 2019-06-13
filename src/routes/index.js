@@ -1,19 +1,20 @@
 import React from 'react';
+import 'normalize.css';
 import { Route, Switch } from 'react-router-dom';
-import MainView from './mainView/mainView';
-import HomeView from './homeView/homeView';
-import AboutView from './aboutView/aboutView';
+import HomeView from './homeView';
+import AboutView from './aboutView';
+import Layout from '../components/Layout';
 
 const getRoutes = function() {
     return (
-        <div>
-            <Route name="Main" component={MainView} />
+        <Layout>
             <Switch>
                 <Route exact path="/" component={HomeView} />
                 <Route path="/about" component={AboutView} />
             </Switch>
-        </div>
-    )
-};
-
-export default getRoutes;
+        </Layout>
+        )
+    };
+    
+    export default getRoutes;
+    
