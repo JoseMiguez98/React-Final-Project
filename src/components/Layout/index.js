@@ -1,10 +1,12 @@
 import React from 'react';
 import Footer from './Footer';
-import Header from './Header';
+import { HeaderLocation as Header } from './Header';
 
 const Layout = props => (
     <div className="container">
-        <Header/>
+        <Header 
+            handleSearchClick={ props.handleSearchClick }
+            searchExpanded={ props.searchExpanded } />
             {props.children}
         <Footer/>
     </div>

@@ -1,0 +1,30 @@
+.artist-row {
+    border: 2px solid #111;
+    width: 95%;
+    height: 100px;
+    position: relative;
+}
+
+.artist-row:hover {
+    background: #444;
+}
+
+.artist-row:not(:first-child) {
+    margin-top: 10px;
+}
+
+
+.artist-logo {
+    max-width: 90px;
+    padding: 8px;
+}
+
+.artist-name {
+    display: inline;
+    padding-left: 15px;
+    margin: 0; 
+    top: 5px;
+    position: absolute;
+    font-size: 18px;
+    font-weight: 600;
+}

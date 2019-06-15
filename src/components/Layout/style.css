@@ -1,3 +1,20 @@
+.container {
+    margin: 0 auto;
+    width: 100%;
+    height: 750px;
+    border: 2.5px solid #9e9;
+    border-radius: 2px;
+    padding: 10px;
+    background: #222;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+
 /*________________________________-Header-_____________________________*/
 
 header {
@@ -8,7 +25,55 @@ header {
     top: 0;
     left: 0;
     box-sizing: border-box;
-    border-bottom: solid #111;
+    border-bottom: solid;
+    display: block;
+}
+
+.collapsible-search-button {
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    padding: 20px;
+    color: #bbb;
+    font-size: 30px;
+    stroke: #222;
+    stroke-width: 40px;
+    cursor: pointer;
+    background: none;
+	border: none;
+	outline: inherit;
+}
+ 
+.collapsible-search-button:hover {
+   color: #9e9;
+}
+
+/* Remove out line when button is clicked */
+.collapsible-search-button:focus {
+    outline: none;
+ }
+ 
+.collapsible-search-button 
+.angle-icon {
+    position: absolute;
+    top: 40px;
+}
+
+.collapsible-search-bar {
+    position: absolute;
+    width: 95%;
+    top: 100px;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    background: #222;
+    border-bottom: solid;
+    box-sizing: border-box;
+    z-index: 1;
+    display: none;
+}
+
+.collapsible-search-bar.visible {
     display: block;
 }
 
@@ -27,11 +92,14 @@ footer {
     position: absolute;
     bottom: 0;
     left: 0;
-    border-top: solid #111;
+    border-top: solid;
     box-sizing: border-box;
 }
 
-footer > p {
-    color: #bbb;
-    text-align: center;
+
+header, 
+footer,
+.collapsible-search-bar {
+    border-width: 3px;
+    border-color: #111;
 }

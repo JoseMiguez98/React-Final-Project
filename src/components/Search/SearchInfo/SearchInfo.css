@@ -1,0 +1,44 @@
+.search-info {
+    margin-top: 100px;
+    border-bottom: 3px solid #111;
+    position: relative;
+    padding: 0;
+}
+
+.search-info-title {
+    font-size: 50px;
+}
+
+ul.breadcrumb {
+    padding: 0;
+    margin-bottom: 10px;
+    list-style: none;
+    font-size: 16px;
+    position: relative;
+}
+
+ul.breadcrumb li {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+}
+
+ul.breadcrumb li+li::before {
+    content: ">";
+    padding: 8px;
+    position: relative;
+    display: inline-block;
+    color: #bbb;
+}
+
+ul.breadcrumb li a {
+    text-decoration: none;
+}
+
+ul.breadcrumb li a:visited:not(.active) {
+    color: #bbb;
+}
+
+.active {
+    color: #9e9;
+}
