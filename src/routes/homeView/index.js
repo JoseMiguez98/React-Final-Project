@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './style.css';
-import SearchForm from '../../components/common/SearchForm';
+import { SearchFormRouter as SearchForm } from '../../components/common/SearchForm';
 
 class HomeView extends Component {
+
     render() {
         return (
             <main>
@@ -24,7 +25,7 @@ class HomeView extends Component {
                 
                 </section>
                 
-             <SearchForm placeholder="Type the name of your favorite artist"/>
+             <SearchForm handleSubmit={ this.props.handleFormSubmit } placeholder="Type the name of your favorite artist"/>
             
             </main>
             );
