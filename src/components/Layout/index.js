@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Footer from './Footer';
 import { HeaderRouter as Header } from './Header';
 
-const Layout = props => (
-    <div className="container">
+class Layout extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            searchExpanded: false
+        }
+
+        this.toggleSearch = this.toggleSearch.bind(this);
+    }
+
+    toggleSearch() {
+        this.setState( prevState => {
+            return {...prevState, ...prevState.searchExpanded = !prevState.searchExpanded};
+        });
+    }
+
+
+    render() {
+    return (<div className="container">
         <Header 
-            handleSearchClick={ props.handleSearchClick }
-            handleFormSubmit={ props.handleFormSubmit }
-            searchExpanded={ props.searchExpanded } />
-            { props.children }
+            handleSearchClick={ this.toggleSearch }
+            searchExpanded={ this.state.searchExpanded } />
+            { this.props.children }
         <Footer/>
-    </div>
-);
+    </div>)
+    }
+} 
+   
 
 export default Layout;
