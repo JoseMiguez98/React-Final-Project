@@ -14,8 +14,10 @@
     "query-string": "^6.7.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-loader-spinner": "^2.3.0",
     "react-localstorage": "^0.3.1",
-    "react-router-dom": "^4.0.0"
+    "react-router-dom": "^4.0.0",
+    "spotify-web-api-js": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

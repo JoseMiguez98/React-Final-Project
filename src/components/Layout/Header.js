@@ -3,7 +3,7 @@ import logo from '../../assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import { SearchFormRouter as SearchForm } from '../common/SearchForm';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 class Header extends Component {
     
@@ -14,7 +14,7 @@ class Header extends Component {
      return (
             <div>
                 <header>
-                    <img id="logo" src={ logo } alt="Spotify Logo"/>
+                <Link to="/"><img id="logo" src={ logo } alt="Spotify Logo"/></Link>
 
                 { pathname !== "/" ?
                     <button 

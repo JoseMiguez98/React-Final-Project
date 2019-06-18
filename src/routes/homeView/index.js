@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import './style.css';
 import { SearchFormRouter as SearchForm } from '../../components/common/SearchForm';
+import queryString from 'query-string';
 
 class HomeView extends Component {
+
+    componentDidMount() {
+        const token = queryString.parse(window.location.search).access_token;
+        
+        if(!token){
+            window.location = "http://localhost:8888/login";
+        }
+
+        localStorage.setItem("access_token", token);
+    }
 
     render() {
         return (
