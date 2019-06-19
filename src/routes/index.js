@@ -8,17 +8,27 @@ import NotFound from '../components/common/NotFound/NotFound';
 
 class getRoutes extends Component {
     
-    render(){
-        return (
-            <Layout>
-            <Switch>
-            <Route exact path="/" component={ HomeView } />
-            <Route path="/search" component={ SearchView } />
-            <Route component={ NotFound } />
-            </Switch>
-            </Layout>
-            );
-        }
+    componentDidMount() {
+        if(!localStorage.getItem("access_token")) {
+            fetch("http://localhost:8888/token").then(res => {
+            return res.json();
+        }).then(res => {
+            localStorage.setItem("access_token", res.access_token);
+        });
     }
-    export default getRoutes;
-    
+}
+
+
+render(){
+    return (
+        <Layout>
+        <Switch>
+        <Route exact path="/" component={ HomeView } />
+        <Route path="/search" component={ SearchView } />
+        <Route component={ NotFound } />
+        </Switch>
+        </Layout>
+        );
+    }
+}
+export default getRoutes;
