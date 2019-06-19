@@ -13,7 +13,7 @@ const SearchInfo = props => (
                         exact to="/" 
                         activeClassName="active">Home</NavLink>
                     </li>
-                    <li><NavLink exact to="/search" activeClassName="active">Artists</NavLink></li>
+                    <li><NavLink exact to={"/search?q=" + props.search} activeClassName="active">Artists</NavLink></li>
                 </ul>
     </section>
 );

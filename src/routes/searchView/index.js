@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { SearchInfoRouter as SearchInfo } from '../../components/SearchResults/SearchInfo'
-import ArtistList from '../../components/SearchResults/ArtistList';
+import { SearchInfoRouter as SearchInfo } from '../../components/SearchPage/SearchInfo'
+import ArtistList from '../../components/SearchPage/ArtistList';
 import queryString from 'query-string';
 import { BASE_URL } from '../../api';
 import Loader from 'react-loader-spinner';
@@ -16,9 +16,9 @@ class SearchView extends Component {
         }
     }
 
-    search(){
+    search() {
         const search = queryString.parse(this.props.location.search).q;
-        const url = `${BASE_URL}search?q=${search}&type=artist&limit=10`;
+        const url = `${ BASE_URL }search?q=${ search }&type=artist&limit=10`;
         const token = localStorage.getItem("access_token");
 
         fetch(url, {
@@ -41,8 +41,16 @@ class SearchView extends Component {
         this.search();
     }
 
-    componentDidUpdate() {
-        this.search();
+    componentDidUpdate(prevProps) {
+        let oldSearch = queryString.parse(prevProps.location.search).q;
+        let newSearch = queryString.parse(this.props.location.search).q;
+
+        // If the search query param change i update the componentn
+        // otherwise it will fall on a infinite cylcle;
+
+        if(oldSearch !== newSearch){
+            this.search();
+        }
     }
 
     render() {
