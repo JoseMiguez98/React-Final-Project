@@ -30,6 +30,7 @@ class SearchView extends Component {
         }).then(response =>{
             return response.json()
         }).then(response => {
+            console.log(response);
             this.setState({
                 search,
                 data: response.artists.items

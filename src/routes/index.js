@@ -9,11 +9,18 @@ import NotFound from '../components/common/NotFound/NotFound';
 class getRoutes extends Component {
     
     componentDidMount() {
-        if(!localStorage.getItem("access_token")) {
+        //If a token exists calculate his life time to check if expired
+        let token_date = localStorage.getItem("time_start") ? new Date(localStorage.getItem("time_start")) : null;
+        let token_live_time = token_date
+        ? Math.floor((new Date().getTime() - token_date.getTime()) / 1000)
+        : null;
+        
+        if(!localStorage.getItem("access_token") || token_live_time >= 3600) {
             fetch("http://localhost:8888/token").then(res => {
             return res.json();
         }).then(res => {
             localStorage.setItem("access_token", res.access_token);
+            localStorage.setItem("time_start", new Date().toString());
         });
     }
 }
