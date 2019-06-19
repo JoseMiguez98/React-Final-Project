@@ -18,7 +18,7 @@ class SearchView extends Component {
 
     search() {
         const search = queryString.parse(this.props.location.search).q;
-        const url = `${ BASE_URL }search?q=${ search }&type=artist&limit=10`;
+        const url = `${ BASE_URL }search?q=${ search }&type=artist`;
         const token = localStorage.getItem("access_token");
 
         fetch(url, {
@@ -30,7 +30,6 @@ class SearchView extends Component {
         }).then(response =>{
             return response.json()
         }).then(response => {
-            console.log(response);
             this.setState({
                 search,
                 data: response.artists.items
@@ -66,7 +65,7 @@ class SearchView extends Component {
                   color="#9e9"
                    width={100}
                     height={100} />
-                    </div>}
+                </div>}
             </article>
         );
     }
