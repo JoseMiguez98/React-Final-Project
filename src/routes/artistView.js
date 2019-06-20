@@ -38,7 +38,7 @@ class ArtistView extends Component {
 
     getArtistAlbums() {
         const id = queryString.parse(this.props.location.search).id;
-        const url = `${ BASE_URL }artists/${ id }/albums`;
+        const url = `${ BASE_URL }artists/${ id }/albums?country=AR`;
         const token = localStorage.getItem("access_token");
 
         fetch(url, {
@@ -50,6 +50,7 @@ class ArtistView extends Component {
         }).then(response =>{
             return response.json()
         }).then(response => {
+            console.log(response);
              this.setState({
              albums: response.items
              });
@@ -76,8 +77,7 @@ class ArtistView extends Component {
                 color="#9e9"
                 width={100}
                 height={100} />
-            </div> }
-              
+            </div> }     
        </article> );
     }
 }
