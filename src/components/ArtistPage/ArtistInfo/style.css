@@ -1,0 +1,19 @@
+.artist-info-logo {
+    margin: 0;
+    margin-right: 10px;
+    float: left;
+    clear: left;
+}
+
+.artist-info-logo img {
+    max-width: 90px;
+}
+
+.artist-info-text {
+    margin-top: 0px 20px;
+}
+
+.loader-wrapper {
+    margin: 0 auto;
+    width: fit-content;
+}

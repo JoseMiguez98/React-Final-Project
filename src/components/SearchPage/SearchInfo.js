@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import BreadCrumb from '../../common/BreadCrumb';
+import BreadCrumb from '../common/BreadCrumb';
 
 const SearchInfo = props => (
     <section className="search-info info-container">

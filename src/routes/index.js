@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import 'normalize.css';
 import { Route, Switch } from 'react-router-dom';
 import HomeView from './homeView';
-import SearchView from './searchView';
+import SearchView from './searchView.js';
+import ArtistView from './artistView';
 import Layout from '../components/Layout';
 import NotFound from '../components/common/NotFound/NotFound';
 
@@ -29,11 +30,12 @@ class getRoutes extends Component {
 render(){
     return (
         <Layout>
-        <Switch>
-        <Route exact path="/" component={ HomeView } />
-        <Route path="/search" component={ SearchView } />
-        <Route component={ NotFound } />
-        </Switch>
+            <Switch>
+                <Route exact path="/" component={ HomeView } />
+                <Route path="/search" component={ SearchView } />
+                <Route path="/artist" component={ ArtistView } />
+                <Route component={ NotFound } />
+            </Switch>
         </Layout>
         );
     }

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { SearchInfoRouter as SearchInfo } from '../../components/SearchPage/SearchInfo'
-import ArtistList from '../../components/SearchPage/ArtistList';
+import { SearchInfoRouter as SearchInfo } from '../components/SearchPage/SearchInfo.js'
+import ArtistList from '../components/SearchPage/ArtistList';
 import queryString from 'query-string';
-import { BASE_URL } from '../../api';
-import Loader from 'react-loader-spinner';
-import './style.css';
+import { BASE_URL } from '../api';
+import Loader from '../components/common/LoaderSpinner';
 
 class SearchView extends Component {
     constructor(props) {
@@ -14,6 +13,12 @@ class SearchView extends Component {
             data: null,
             search: null
         }
+
+        this.handleRowClick = this.handleRowClick.bind(this);
+    }
+
+    handleRowClick(evt) {
+        this.props.history.push("/artist?id=" + evt.target.dataset.id + "&q="+ this.state.search);
     }
 
     search() {
@@ -58,14 +63,14 @@ class SearchView extends Component {
             <article>
                 <SearchInfo search={ this.state.search } />
                 {this.state.data ? 
-                <ArtistList artists={ this.state.data } /> :
-                <div className="spinner-wrapper">
-                <Loader
-                 type="Circles"
-                  color="#9e9"
-                   width={100}
-                    height={100} />
-                </div>}
+                <ArtistList 
+                artists={ this.state.data }
+                handleRowClick={ this.handleRowClick } /> :
+               <Loader 
+               type="Circles"
+               color="#9e9"
+               width={100}
+               height={100} />}
             </article>
         );
     }

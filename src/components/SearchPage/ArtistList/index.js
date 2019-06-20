@@ -2,10 +2,10 @@ import React from 'react';
 import './style.css';
 
 const ArtistRow = props => {
-    const { logo, name } = props;
+    const { logo, name, id } = props;
 
    return (
-    <li className="artist-row">
+    <li data-id={ id } className="artist-row" onClick={ props.handleRowClick }>
         <img alt={ name + " logo" } src={ logo.length > 0 ? logo[1].url : "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" } className="artist-logo" />
         <p className="artist-name text">{ name }</p>
     </li>
@@ -17,7 +17,12 @@ const ArtistList = props => {
     return (
     <ul className="artist-list">
        { artists.length > 0 ? artists.map((artist, key) => {
-        return <ArtistRow key={ key } logo={ artist.images } name={ artist.name }></ArtistRow>;
+        return <ArtistRow 
+                key={ key } 
+                id={ artist.id } 
+                logo={ artist.images } 
+                name={ artist.name }
+                handleRowClick={ props.handleRowClick }></ArtistRow>;
     }) : <p className="text">The search does not return results.</p> }
     </ul>
     )
