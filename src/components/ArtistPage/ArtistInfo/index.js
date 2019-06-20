@@ -10,11 +10,11 @@ const ArtistInfo = props => {
         <section className="artist-info info-container">
         <figure className="artist-info-logo">
             <img 
-            src={ images ? images[1].url : "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" } 
+            src={ images !== null && images.length > 0 ? images[1].url : "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" } 
             alt={ name ? name + " logo" : "default" } />
         </figure>
 
-        { name ? 
+        { name !== null ? 
         <h2 className="artist-info-title title"> { name } </h2> :
         <div className="loader-wrapper">
             <Loader 
@@ -24,16 +24,8 @@ const ArtistInfo = props => {
             height={80} />
         </div> }
 
-        { genres ? 
-        <p className="artist-info-text text">{ genres[0].charAt(0).toUpperCase() + genres[0].slice(1) }</p> :
-        <div className="loader-wrapper">
-            <Loader 
-            className="loader"
-            type="ThreeDots"
-            color="#9e9"
-            width={80}
-            height={80} />
-        </div> }
+        { genres !== null && genres.length > 0 ? 
+        <p className="artist-info-text text">{ genres[0].charAt(0).toUpperCase() + genres[0].slice(1) }</p> :""}
         
         <BreadCrumb items={[
             {

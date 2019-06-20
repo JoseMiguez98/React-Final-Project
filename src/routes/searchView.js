@@ -3,7 +3,8 @@ import { SearchInfoRouter as SearchInfo } from '../components/SearchPage/SearchI
 import ArtistList from '../components/SearchPage/ArtistList';
 import queryString from 'query-string';
 import { BASE_URL } from '../api';
-import Loader from '../components/common/LoaderSpinner';
+import Loader from 'react-loader-spinner';
+import '../components/common/styles/loader.css';
 
 class SearchView extends Component {
     constructor(props) {
@@ -50,7 +51,7 @@ class SearchView extends Component {
         let oldSearch = queryString.parse(prevProps.location.search).q;
         let newSearch = queryString.parse(this.props.location.search).q;
 
-        // If the search query param change i update the componentn
+        // If the search query param change i update the component
         // otherwise it will fall on a infinite cylcle;
 
         if(oldSearch !== newSearch){
@@ -60,17 +61,19 @@ class SearchView extends Component {
 
     render() {
         return (
-            <article>
+            <article className="view-container">
                 <SearchInfo search={ this.state.search } />
                 {this.state.data ? 
                 <ArtistList 
                 artists={ this.state.data }
                 handleRowClick={ this.handleRowClick } /> :
-               <Loader 
-               type="Circles"
-               color="#9e9"
-               width={100}
-               height={100} />}
+                <div className="loader-wrapper">
+                    <Loader 
+                    type="Circles"
+                    color="#9e9"
+                    width={100}
+                    height={100} />
+               </div>}
             </article>
         );
     }
