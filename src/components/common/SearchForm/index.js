@@ -15,6 +15,7 @@ class SearchForm extends Component {
         evt.preventDefault();
         const search = new FormData(evt.target).get("search").trim();
         if(search.length > 0) {
+            localStorage.setItem("search", search);
             this.props.history.push("/search?q=" + search);
         }
     }

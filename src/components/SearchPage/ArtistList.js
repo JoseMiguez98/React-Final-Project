@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../common/styles/elem-list.css';
+import '../common/styles/elem-list.css';
 
 const ArtistRow = props => {
     const { logo, name, id } = props;

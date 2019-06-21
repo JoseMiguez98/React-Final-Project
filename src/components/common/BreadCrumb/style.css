@@ -29,6 +29,6 @@ ul.breadcrumb li a:visited:not(.active) {
     color: #bbb;
 }
 
-.active {
+ .active {
     color: #9e9;
-}
+} 

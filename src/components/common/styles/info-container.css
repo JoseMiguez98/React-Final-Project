@@ -1,25 +1,19 @@
-.artist-info-logo {
+.artist-info-logo , .album-info-cover {
     margin: 0;
     margin-right: 10px;
     float: left;
-    clear: left;
 }
 
-.artist-info-logo img {
+.artist-info-logo img, .album-info-cover img {
     max-width: 90px;
 }
 
-.artist-info-text {
+.artist-info-text, .album-info-text {
     margin-top: 0px 20px;
 }
 
 .loader-wrapper {
     position: absolute;
     text-align: center;
-    /* margin: auto;
-    left: 40%;
-    top: 0;
-    right: auto;
-    bottom: auto; */
     width: fit-content;
 }

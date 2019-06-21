@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ArtistInfo from '../components/ArtistPage/ArtistInfo';
+import ArtistInfo from '../components/ArtistPage/ArtistInfo.js';
 import AlbumList from '../components/ArtistPage/AlbumList.js';
 import { BASE_URL } from '../api';
 import queryString from 'query-string';
@@ -13,6 +13,15 @@ class ArtistView extends Component {
         this.state = {
             data: {},
             albums: null
+        }
+
+        this.handleAlbumRowClick = this.handleAlbumRowClick.bind(this);
+    }
+
+    handleAlbumRowClick(evt) {
+        if(evt.target.dataset.id) {
+            localStorage.setItem("artist_name", this.state.data.name );
+            this.props.history.push("/album?id=" + evt.target.dataset.id + "&artist=" + queryString.parse(this.props.location.search).id);
         }
     }
 
@@ -50,7 +59,6 @@ class ArtistView extends Component {
         }).then(response =>{
             return response.json()
         }).then(response => {
-            console.log(response);
              this.setState({
              albums: response.items
              });
@@ -66,11 +74,11 @@ class ArtistView extends Component {
        return (
        <article className="view-container">
             <ArtistInfo
-                data={ this.state.data }
-                search={ queryString.parse(this.props.location.search).q } />
+                data={ this.state.data } />
             { this.state.albums !== null ?
             <AlbumList
-            albums= { this.state.albums } /> :
+            albums={ this.state.albums }
+            handleRowClick={ this.handleAlbumRowClick } /> :
             <div className="loader-wrapper">
                 <Loader 
                 type="Circles"

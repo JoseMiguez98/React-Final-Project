@@ -5,7 +5,7 @@ const AlbumRow = props => {
    const { name, year, covers, id } = props;
 
    return (
-    <li className="album-row" data-id={ id }>
+    <li className="album-row" data-id={ id } onClick={ props.handleRowClick } >
         <img 
         alt={ name + " cover art" } 
         src={ covers.length > 0 ? covers[1].url : "http://s3.amazonaws.com/37assets/svn/765-defauhttps://upload.wikimedia.org/wikipedia/commons/f/fd/Blank_CD_icon.pnglt-avatar.png" } 
@@ -27,7 +27,8 @@ const AlbumList = props => {
                 year= { new Date(album.release_date).getFullYear() }
                 covers= { album.images }
                 id= { album.id }
-                key= {"Album: " + key} />
+                key= {"Album: " + key}
+                handleRowClick= { props.handleRowClick } />
             )):<p className="text">The artist has no albums</p>}
         </ul>
     );

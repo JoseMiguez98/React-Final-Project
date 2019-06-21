@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import 'normalize.css';
 import { Route, Switch } from 'react-router-dom';
 import HomeView from './homeView';
-import SearchView from './searchView.js';
+import SearchView from './searchView';
 import ArtistView from './artistView';
+import AlbumView from './albumView';
 import Layout from '../components/Layout';
 import NotFound from '../components/common/NotFound/NotFound';
 
@@ -34,6 +35,7 @@ render(){
                 <Route exact path="/" component={ HomeView } />
                 <Route path="/search" component={ SearchView } />
                 <Route path="/artist" component={ ArtistView } />
+                <Route path="/album" component={ AlbumView } />
                 <Route component={ NotFound } />
             </Switch>
         </Layout>

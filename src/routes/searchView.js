@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { SearchInfoRouter as SearchInfo } from '../components/SearchPage/SearchInfo.js'
-import ArtistList from '../components/SearchPage/ArtistList';
+import ArtistList from '../components/SearchPage/ArtistList.js';
 import queryString from 'query-string';
 import { BASE_URL } from '../api';
 import Loader from 'react-loader-spinner';
@@ -15,11 +15,13 @@ class SearchView extends Component {
             search: null
         }
 
-        this.handleRowClick = this.handleRowClick.bind(this);
+        this.handleArtistRowClick = this.handleArtistRowClick.bind(this);
     }
 
-    handleRowClick(evt) {
-        this.props.history.push("/artist?id=" + evt.target.dataset.id + "&q="+ this.state.search);
+    handleArtistRowClick(evt) {
+        if(evt.target.dataset.id){
+            this.props.history.push("/artist?id=" + evt.target.dataset.id);
+        }
     }
 
     search() {
@@ -66,7 +68,7 @@ class SearchView extends Component {
                 {this.state.data ? 
                 <ArtistList 
                 artists={ this.state.data }
-                handleRowClick={ this.handleRowClick } /> :
+                handleRowClick={ this.handleArtistRowClick } /> :
                 <div className="loader-wrapper">
                     <Loader 
                     type="Circles"

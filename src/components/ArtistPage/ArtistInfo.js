@@ -1,6 +1,6 @@
 import React from 'react';
-import './style.css';
-import BreadCrumb from '../../common/BreadCrumb';
+import '../common/styles/info-container.css';
+import BreadCrumb from '../common/BreadCrumb';
 import Loader from 'react-loader-spinner';
 
 const ArtistInfo = props => {
@@ -34,7 +34,7 @@ const ArtistInfo = props => {
             },
             {
                 name: "Artists",
-                href: "/search?q=" + props.search
+                href: "/search?q=" + localStorage.getItem("search")
             },
             {
                 name: name,
@@ -45,7 +45,5 @@ const ArtistInfo = props => {
     </section>
     );
 };
-    
-;
 
 export default ArtistInfo;
