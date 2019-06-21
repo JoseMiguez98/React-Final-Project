@@ -5,7 +5,6 @@ import Loader from 'react-loader-spinner';
 
 const AlbumInfo = props => {
     let { images: covers, name, artists, id_artist, id_album, year } = props;
-    console.log(id_album);
 
     return (
     <section className="album-info info-container">
@@ -15,7 +14,7 @@ const AlbumInfo = props => {
             alt={ name ? name + " cover" : "default" } />
         </figure>
 
-        { name !== null ? 
+        { name ? 
         <h2 className="album-info-title title"> { name } </h2> :
         <div className="loader-wrapper">
             <Loader 

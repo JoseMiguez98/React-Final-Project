@@ -11,8 +11,7 @@ class SearchView extends Component {
         super(props);
         
         this.state = {
-            data: null,
-            search: null
+            data: null
         }
 
         this.handleArtistRowClick = this.handleArtistRowClick.bind(this);
@@ -64,7 +63,7 @@ class SearchView extends Component {
     render() {
         return (
             <article className="view-container">
-                <SearchInfo search={ this.state.search } />
+                <SearchInfo search={ localStorage.getItem("search") } />
                 {this.state.data ? 
                 <ArtistList 
                 artists={ this.state.data }

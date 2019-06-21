@@ -1,0 +1,49 @@
+.track-list-container {
+    position: relative;
+    border: 2px solid #000;
+    top: 130px;
+    padding: 0;
+}
+
+.track-list-container .text {
+    margin: 0;
+}
+
+.track-list {
+    max-height: 350px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 2px solid #000;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+li:hover {
+    background: #bbb;
+}
+
+li .text {
+    margin: 0;
+}
+
+li .text:hover {
+    color: #000;
+}
+
+.pair {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.odd {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.track-row.playing {
+    background: #9e9;
+    color: #000;
+}
+
+.track-row.playing .text {
+    color: #000;
+}

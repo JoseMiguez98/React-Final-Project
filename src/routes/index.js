@@ -18,7 +18,7 @@ class getRoutes extends Component {
         : null;
         
         if(!localStorage.getItem("access_token") || token_live_time >= 3600) {
-            fetch("http://localhost:8888/token").then(res => {
+            fetch("http://192.168.137.244:8888/token").then(res => {
             return res.json();
         }).then(res => {
             localStorage.setItem("access_token", res.access_token);

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import AlbumInfo from '../components/AlbumPage/AlbumInfo.js';
+import TrackList from '../components/AlbumPage/TrackList';
 import { BASE_URL } from '../api';
 import queryString from 'query-string';
+import Loader from 'react-loader-spinner';
 
 class AlbumView extends Component {
     constructor(props) {
@@ -34,6 +36,7 @@ class AlbumView extends Component {
 
     render() {
         const { name, artists , id, release_date, images, tracks } = this.state.data;
+
         return (
             <article className="view-container">
                 <AlbumInfo
@@ -44,7 +47,15 @@ class AlbumView extends Component {
                 year={ new Date(release_date).getFullYear() }
                 images={ images }
                 search={ localStorage.getItem("search") } />
-                {/* <TrackList/> */}
+                { tracks ?
+                <TrackList tracks={ tracks.items } /> :
+                <div className="loader-wrapper">
+                    <Loader 
+                    type="Circles"
+                    color="#9e9"
+                    width={100}
+                    height={100} />
+                </div> } 
             </article>
         );
     }

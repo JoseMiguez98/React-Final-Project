@@ -8,7 +8,7 @@ const AlbumRow = props => {
     <li className="album-row" data-id={ id } onClick={ props.handleRowClick } >
         <img 
         alt={ name + " cover art" } 
-        src={ covers.length > 0 ? covers[1].url : "http://s3.amazonaws.com/37assets/svn/765-defauhttps://upload.wikimedia.org/wikipedia/commons/f/fd/Blank_CD_icon.pnglt-avatar.png" } 
+        src={ covers && covers.length > 0 ? covers[1].url : "http://cdn.last.fm/flatness/responsive/2/noimage/default_album_300_g4.png" } 
         className="album-cover" />
         <p className="album-name text">{ name }</p>
         <p className="album-year text">{ year }</p>
