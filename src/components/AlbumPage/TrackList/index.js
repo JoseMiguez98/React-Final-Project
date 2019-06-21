@@ -33,7 +33,6 @@ class TrackRow extends Component{
 
     render() {
         const { name, id, index } = this.props;
-
         return ( 
         <li
          onClick={ this.handleClick }
@@ -49,6 +48,7 @@ class TrackRow extends Component{
 
 const TrackList = props => {
     const { tracks } = props;
+    
     return (
         <div className="track-list-container">
         <p className="text">CD 1</p>

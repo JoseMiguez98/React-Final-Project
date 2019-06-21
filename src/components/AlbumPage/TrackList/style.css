@@ -19,15 +19,24 @@
     overflow-x: hidden;
 }
 
-li:hover {
+.track-row.playing {
+    background: #9e9;
+    color: #000;
+}
+
+ /* li:not(.navLink):hover {
+    background: #bbb;
+} */
+
+.track-row:hover {
     background: #bbb;
 }
 
-li .text {
+.track-row .text {
     margin: 0;
 }
 
-li .text:hover {
+.track-row .text:hover {
     color: #000;
 }
 
@@ -39,7 +48,7 @@ li .text:hover {
     background: rgba(0, 0, 0, 0.6);
 }
 
-.track-row.playing {
+ul .track-row.playing {
     background: #9e9;
     color: #000;
 }

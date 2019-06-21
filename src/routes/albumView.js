@@ -4,16 +4,11 @@ import TrackList from '../components/AlbumPage/TrackList';
 import { BASE_URL } from '../api';
 import queryString from 'query-string';
 import Loader from 'react-loader-spinner';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addAlbumData } from '../redux/actions';
 
 class AlbumView extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            data: {}
-        }
-    }
-
     componentDidMount() {
         const id = queryString.parse(this.props.location.search).id;
         const url = `${ BASE_URL }albums/${ id }`;
@@ -28,15 +23,12 @@ class AlbumView extends Component {
         }).then(response =>{
             return response.json()
         }).then(response => {
-              this.setState({
-              data: response
-              });
+            this.props.addAlbumData(response);
         });
     }
 
     render() {
-        const { name, artists , id, release_date, images, tracks } = this.state.data;
-
+        const { name, artists , id, release_date, images, tracks } = this.props.data;
         return (
             <article className="view-container">
                 <AlbumInfo
@@ -61,4 +53,16 @@ class AlbumView extends Component {
     }
 }
 
-export default AlbumView;
+const mapDispatchToProps = dispatch => {
+    return {
+        addAlbumData: data => dispatch(addAlbumData(data))
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        data: state.album.data
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AlbumView));

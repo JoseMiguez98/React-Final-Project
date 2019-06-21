@@ -7,6 +7,8 @@ import ArtistView from './artistView';
 import AlbumView from './albumView';
 import Layout from '../components/Layout';
 import NotFound from '../components/common/NotFound/NotFound';
+import { Provider } from 'react-redux';
+import  { store } from '../redux/store';
 
 class getRoutes extends Component {
     
@@ -18,7 +20,7 @@ class getRoutes extends Component {
         : null;
         
         if(!localStorage.getItem("access_token") || token_live_time >= 3600) {
-            fetch("http://192.168.137.244:8888/token").then(res => {
+            fetch("http://localhost:8888/token").then(res => {
             return res.json();
         }).then(res => {
             localStorage.setItem("access_token", res.access_token);
@@ -30,15 +32,17 @@ class getRoutes extends Component {
 
 render(){
     return (
-        <Layout>
-            <Switch>
-                <Route exact path="/" component={ HomeView } />
-                <Route path="/search" component={ SearchView } />
-                <Route path="/artist" component={ ArtistView } />
-                <Route path="/album" component={ AlbumView } />
-                <Route component={ NotFound } />
-            </Switch>
-        </Layout>
+        <Provider store={store}>
+            <Layout>
+                <Switch>
+                    <Route exact path="/" component={ HomeView } />
+                    <Route path="/search" component={ SearchView } />
+                    <Route path="/artist" component={ ArtistView } />
+                    <Route path="/album" component={ AlbumView } />
+                    <Route component={ NotFound } />
+                </Switch>
+            </Layout>
+        </Provider>
         );
     }
 }

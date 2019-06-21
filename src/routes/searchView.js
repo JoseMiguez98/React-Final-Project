@@ -5,14 +5,13 @@ import queryString from 'query-string';
 import { BASE_URL } from '../api';
 import Loader from 'react-loader-spinner';
 import '../components/common/styles/loader.css';
+import { connect } from 'react-redux';
+import { addResult } from '../redux/actions';
+import { withRouter } from 'react-router-dom';
 
 class SearchView extends Component {
     constructor(props) {
         super(props);
-        
-        this.state = {
-            data: null
-        }
 
         this.handleArtistRowClick = this.handleArtistRowClick.bind(this);
     }
@@ -37,10 +36,7 @@ class SearchView extends Component {
         }).then(response =>{
             return response.json()
         }).then(response => {
-            this.setState({
-                search,
-                data: response.artists.items
-            });
+            this.props.addResult(response.artists.items);
         });
     }
 
@@ -63,10 +59,10 @@ class SearchView extends Component {
     render() {
         return (
             <article className="view-container">
-                <SearchInfo search={ localStorage.getItem("search") } />
-                {this.state.data ? 
+                <SearchInfo />
+                {this.props.data ? 
                 <ArtistList 
-                artists={ this.state.data }
+                artists={ this.props.data }
                 handleRowClick={ this.handleArtistRowClick } /> :
                 <div className="loader-wrapper">
                     <Loader 
@@ -80,4 +76,16 @@ class SearchView extends Component {
     }
 }
 
-export default SearchView;
+const mapDispatchToProps = dispatch => {
+    return {
+        addResult: data => dispatch(addResult(data))
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        data: state.search.data
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchView));

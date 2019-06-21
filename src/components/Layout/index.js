@@ -1,35 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Footer from './Footer';
 import { HeaderRouter as Header } from './Header';
+import { connect } from 'react-redux';
+import { toggleSearch } from '../../redux/actions';
 
-class Layout extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            searchExpanded: false
-        }
-
-        this.toggleSearch = this.toggleSearch.bind(this);
-    }
-
-    toggleSearch() {
-        this.setState( prevState => {
-            return {...prevState, ...prevState.searchExpanded = !prevState.searchExpanded};
-        });
-    }
-
-
-    render() {
-    return (<div className="container">
+const Layout = props => (
+    <div className="container">
         <Header 
-            handleSearchClick={ this.toggleSearch }
-            searchExpanded={ this.state.searchExpanded } />
-            { this.props.children }
+            handleSearchClick={ props.toggleSearch }
+            searchExpanded={ props.searchExpanded } />
+            { props.children }
         <Footer/>
-    </div>)
-    }
-} 
-   
+    </div>
+)
 
-export default Layout;
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleSearch: () => dispatch(toggleSearch())
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        searchExpanded: state.layout.searchExpanded
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

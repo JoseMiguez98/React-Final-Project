@@ -5,7 +5,7 @@ import BreadCrumb from '../common/BreadCrumb';
 const SearchInfo = props => (
     <section className="search-info info-container">
         <h2 className="search-info-title title">Artists</h2>
-        <p className="search-info-text text">You are currently searching: "{ props.search }"</p>
+        <p className="search-info-text text">You are currently searching: "{ localStorage.getItem("search") }"</p>
 
         <BreadCrumb items={[
             {

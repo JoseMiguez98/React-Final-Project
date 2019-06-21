@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './style.css';
 
 const NavItem = props => (
-        <li><Link 
+        <li className="navLink"><Link 
             to={ props.to } 
             className={ props.isActive ? "active" : "" } >{ props.name }</Link> 
         </li>

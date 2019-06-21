@@ -5,22 +5,20 @@ import { BASE_URL } from '../api';
 import queryString from 'query-string';
 import Loader from 'react-loader-spinner';
 import '../components/common/styles/loader.css';
+import { connect } from 'react-redux';
+import { addData, addAlbums } from '../redux/actions';
+import { withRouter } from 'react-router-dom'
 
 class ArtistView extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            data: {},
-            albums: null
-        }
 
         this.handleAlbumRowClick = this.handleAlbumRowClick.bind(this);
     }
 
     handleAlbumRowClick(evt) {
         if(evt.target.dataset.id) {
-            localStorage.setItem("artist_name", this.state.data.name );
+            localStorage.setItem("artist_name", this.props.data.name );
             this.props.history.push("/album?id=" + evt.target.dataset.id + "&artist=" + queryString.parse(this.props.location.search).id);
         }
     }
@@ -39,9 +37,7 @@ class ArtistView extends Component {
         }).then(response =>{
             return response.json()
         }).then(response => {
-             this.setState({
-             data: response
-             });
+            this.props.addData(response);
         });
     }
 
@@ -59,9 +55,7 @@ class ArtistView extends Component {
         }).then(response =>{
             return response.json()
         }).then(response => {
-             this.setState({
-             albums: response.items
-             });
+            this.props.addAlbums(response.items);
         });
     }
 
@@ -74,10 +68,10 @@ class ArtistView extends Component {
        return (
        <article className="view-container">
             <ArtistInfo
-                data={ this.state.data } />
-            { this.state.albums !== null ?
+                data={ this.props.data } />
+            { this.props.albums !== null ?
             <AlbumList
-            albums={ this.state.albums }
+            albums={ this.props.albums }
             handleRowClick={ this.handleAlbumRowClick } /> :
             <div className="loader-wrapper">
                 <Loader 
@@ -90,4 +84,19 @@ class ArtistView extends Component {
     }
 }
 
-export default ArtistView;
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addData: data => dispatch(addData(data)),
+        addAlbums: data => dispatch(addAlbums(data))
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        data: state.artist.data,
+        albums: state.artist.albums
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ArtistView));

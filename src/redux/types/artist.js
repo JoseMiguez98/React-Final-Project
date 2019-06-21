@@ -1,0 +1,4 @@
+const ADD_DATA = "ADD_DATA";
+const ADD_ALBUMS = "ADD_ALBUMS";
+
+export { ADD_DATA, ADD_ALBUMS };
